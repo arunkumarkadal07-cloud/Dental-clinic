@@ -1,0 +1,1035 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>SmileCare Dental Clinic</title>
+<meta name="description" content="SmileCare Dental Clinic: comfortable, modern and personalised dental care for families in Tamil Nadu. Book an appointment online or on WhatsApp.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { DEFAULT: "#1677C8", dark: "#0F5FA6", soft: "#E3F0FA" },
+          teal: { DEFAULT: "#20B2AA", dark: "#0E7F79" },
+          mist: "#F4F9FD",
+          ink: { DEFAULT: "#172B4D", soft: "#4A5D7E" },
+          line: "#DCE8F3"
+        },
+        fontFamily: {
+          heading: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
+          body: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+        },
+        boxShadow: {
+          soft: "0 10px 30px -14px rgba(23,43,77,.20)",
+          lift: "0 22px 44px -20px rgba(22,119,200,.40)"
+        }
+      }
+    }
+  };
+</script>
+<style>
+  /* Layout concept: calm clinical layout. Wide white space, one strong blue anchor band (Why Patients Choose SmileCare),
+     soft mist panels between white sections, teal used only for small health cues. */
+  :root {
+    --white: #FFFFFF;
+    --mist: #F4F9FD;
+    --brand: #1677C8;
+    --brand-dark: #0F5FA6;
+    --teal: #20B2AA;
+    --ink: #172B4D;
+    --ink-soft: #4A5D7E;
+    --line: #DCE8F3;
+    --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+    z-index: 60; background: var(--white);
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); }
+  .wrap {
+    width: 100%; max-width: 1200px; margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (min-width: 640px) {
+    .wrap {
+      padding-left: max(24px, env(safe-area-inset-left, 0px));
+      padding-right: max(24px, env(safe-area-inset-right, 0px));
+    }
+  }
+  header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; }
+  section[id] { scroll-margin-top: calc(76px + env(safe-area-inset-top, 0px)); }
+  :focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; border-radius: 8px; }
+
+  /* entrance animations: transform-only reveal keeps content visible at rest */
+  .rv { transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+  .rv.rv-pre { transform: translateY(18px); }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+
+  /* hamburger */
+  .burger { position: relative; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--white); }
+  .burger span { position: absolute; left: 12px; right: 12px; height: 2px; border-radius: 2px; background: var(--ink);
+    transition: transform .3s ease, opacity .2s ease, top .3s ease; }
+  .burger span:nth-child(1) { top: 15px; }
+  .burger span:nth-child(2) { top: 21px; }
+  .burger span:nth-child(3) { top: 27px; }
+  .burger[aria-expanded="true"] span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .burger[aria-expanded="true"] span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+  /* smooth open/close panels (mobile menu + FAQ) */
+  .acc { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s ease; }
+  .acc > div { overflow: hidden; min-height: 0; visibility: hidden; transition: visibility 0s linear .32s; }
+  .acc[data-open="true"] { grid-template-rows: 1fr; }
+  .acc[data-open="true"] > div { visibility: visible; transition-delay: 0s; }
+
+  /* floating actions */
+  .fab-wrap { position: fixed; z-index: 40; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+    right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .fab-top { transition: opacity .25s ease, transform .25s ease; }
+  .fab-top[data-show="false"] { opacity: 0; transform: translateY(10px); pointer-events: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div id="root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.js"></script>
+<script>
+(function () {
+  "use strict";
+  var h = React.createElement;
+  var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef;
+  var html = htm.bind(h);
+
+  /* ------------------------------------------------------------------
+     CONFIG: edit these values before going live.
+     whatsappNumber: country code + number, digits only (e.g. 919876543210).
+     images: paste a photo URL to replace each illustration (empty = illustration).
+  ------------------------------------------------------------------ */
+  var CONFIG = {
+    clinicName: "SmileCare Dental Clinic",
+    whatsappNumber: "910000000000",
+    phoneNumber: "+910000000000",
+    phoneDisplay: "+91 XXXXX XXXXX",
+    whatsappDisplay: "+91 XXXXX XXXXX",
+    email: "info@smilecare.com",
+    address: "Your Clinic Address, Tamil Nadu.",
+    mapsQuery: "dental clinic Tamil Nadu",
+    hours: [["Monday – Saturday", "9:00 AM – 8:00 PM"], ["Sunday", "10:00 AM – 2:00 PM"]],
+    images: { hero: "", about: "", dentist: "" },
+    social: {
+      facebook: "https://www.facebook.com/",
+      instagram: "https://www.instagram.com/",
+      youtube: "https://www.youtube.com/"
+    }
+  };
+
+  var waLink = function (text) {
+    return "https://wa.me/" + CONFIG.whatsappNumber + (text ? "?text=" + encodeURIComponent(text) : "");
+  };
+  var mapsLink = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.mapsQuery);
+
+  var reduceMotion = function () {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  };
+  var goTo = function (id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
+  };
+
+  /* ------------------------------------------------------------------
+     Icons (Lucide-style 24px stroke icons, drawn inline so nothing is blocked)
+  ------------------------------------------------------------------ */
+  var P = function (d) { return ["path", { d: d }]; };
+  var C = function (cx, cy, r) { return ["circle", { cx: cx, cy: cy, r: r }]; };
+  var R = function (x, y, w, hh, rx) { return ["rect", { x: x, y: y, width: w, height: hh, rx: rx }]; };
+  var TOOTH = "M12 5.6C10.6 4.5 8.8 3.8 7 4.2C4.8 4.8 3.8 7 4.3 9.6C4.7 11.8 5.7 13.2 6 15.6C6.2 17.4 6.6 20 8 20C9.5 20 9.4 16.6 10.2 15.2C10.6 14.5 11.2 14.2 12 14.2C12.8 14.2 13.4 14.5 13.8 15.2C14.6 16.6 14.5 20 16 20C17.4 20 17.8 17.4 18 15.6C18.3 13.2 19.3 11.8 19.7 9.6C20.2 7 19.2 4.8 17 4.2C15.2 3.8 13.4 4.5 12 5.6Z";
+  var ICONS = {
+    tooth: [P(TOOTH)],
+    phone: [P("M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z")],
+    arrow: [P("M5 12h14"), P("m12 5 7 7-7 7")],
+    up: [P("m5 12 7-7 7 7"), P("M12 19V5")],
+    chevron: [P("m6 9 6 6 6-6")],
+    check: [P("M20 6 9 17l-5-5")],
+    star: [P("M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z")],
+    pin: [P("M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"), C(12, 10, 3)],
+    clock: [C(12, 12, 10), P("M12 6v6l4 2")],
+    mail: [R(2, 4, 20, 16, 2), P("m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7")],
+    calendar: [R(3, 4, 18, 18, 2), P("M16 2v4M8 2v4M3 10h18")],
+    shield: [P("M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"), P("m9 12 2 2 4-4")],
+    heart: [P("M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z")],
+    sparkles: [P("M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"), P("M20 3v4M22 5h-4M4 17v2M5 18H3")],
+    sun: [C(12, 12, 4), P("M12 2v2M12 20v2M2 12h2M20 12h2"), P("m4.93 4.93 1.41 1.41M17.66 17.66l1.41 1.41M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41")],
+    implant: [P("M7 3h10v5c0 1.7-1 3-2.5 3.5h-5C8 11 7 9.7 7 8z"), P("M10 11.5V21h4v-9.5"), P("M10 15h4M10 18h4")],
+    activity: [P("M22 12h-4l-3 9L9 3l-3 9H2")],
+    braces: [P("M3 8c3 6 15 6 18 0"), R(6.2, 9.4, 3, 3, 0.6), R(10.5, 11, 3, 3, 0.6), R(14.8, 9.4, 3, 3, 0.6)],
+    crown: [P("m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"), P("M5 20h14")],
+    extract: [P("M12 17V3"), P("m6 9 6-6 6 6"), P("M5 21h14")],
+    smile: [C(12, 12, 10), P("M8 14s1.5 2 4 2 4-2 4-2"), P("M9 9h.01M15 9h.01")],
+    award: [C(12, 8, 6), P("M15.477 12.89 17 22l-5-3-5 3 1.523-9.11")],
+    scan: [P("M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"), P("M7 12h10")],
+    usercheck: [P("M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"), C(9, 7, 4), P("m16 11 2 2 4-4")],
+    user: [P("M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"), C(12, 7, 4)],
+    whatsapp: [P("M7.9 20A9 9 0 1 0 4 16.1L2 22Z"), P("M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.8c-.8-.3-1.7-1.2-2-2l.8-.8-1-2z")],
+    info: [C(12, 12, 10), P("M12 16v-4M12 8h.01")],
+    navigation: [P("M3 11 22 2l-9 19-2-8-8-2z")],
+    facebook: [P("M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z")],
+    instagram: [R(2, 2, 20, 20, 5), P("M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"), P("M17.5 6.5h.01")],
+    youtube: [P("M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"), P("m10 15 5-3-5-3z")]
+  };
+
+  function Icon(props) {
+    var def = ICONS[props.name] || [];
+    return h("svg", {
+      width: props.size || 20, height: props.size || 20, viewBox: "0 0 24 24",
+      fill: props.fill || "none", stroke: "currentColor", strokeWidth: props.sw || 1.75,
+      strokeLinecap: "round", strokeLinejoin: "round", className: props.className || "",
+      "aria-hidden": "true", focusable: "false"
+    }, def.map(function (el, i) { return h(el[0], Object.assign({ key: i }, el[1])); }));
+  }
+
+  /* ------------------------------------------------------------------
+     Content
+  ------------------------------------------------------------------ */
+  var NAV = [["home", "Home"], ["about", "About Us"], ["services", "Services"], ["dentist", "Our Dentist"], ["testimonials", "Testimonials"], ["contact", "Contact"]];
+
+  var SERVICES = [
+    { name: "Teeth Cleaning", icon: "sparkles", desc: "Keep your teeth healthy and fresh with professional dental cleaning." },
+    { name: "Teeth Whitening", icon: "sun", desc: "Enhance your smile with professional teeth whitening treatments." },
+    { name: "Dental Implants", icon: "implant", desc: "Replace missing teeth with dental implant solutions." },
+    { name: "Root Canal Treatment", icon: "activity", desc: "Get relief from infected teeth with appropriate root canal treatment." },
+    { name: "Braces & Aligners", icon: "braces", desc: "Achieve a straighter smile with orthodontic treatment options." },
+    { name: "Dental Crowns", icon: "crown", desc: "Restore damaged teeth with suitable dental crowns." },
+    { name: "Tooth Extraction", icon: "extract", desc: "Safe and professional tooth removal when necessary." },
+    { name: "Children's Dentistry", icon: "smile", desc: "Gentle dental care to support your child's healthy smile." }
+  ];
+
+  var FEATURES = [
+    { icon: "award", title: "Experienced Professionals", text: "Dental care from qualified professionals." },
+    { icon: "scan", title: "Modern Technology", text: "Modern equipment to support dental treatments." },
+    { icon: "heart", title: "Patient Comfort", text: "A friendly environment designed around patient comfort." },
+    { icon: "usercheck", title: "Personalised Care", text: "Treatment recommendations based on individual dental needs." }
+  ];
+
+  var TRUST = [
+    { icon: "award", text: "Experienced Dental Professionals" },
+    { icon: "scan", text: "Modern Dental Technology" },
+    { icon: "heart", text: "Patient-Friendly Care" },
+    { icon: "shield", text: "Complete Dental Solutions" }
+  ];
+
+  var TESTIMONIALS = [
+    { text: "The team explained every step before starting, and the whole visit felt relaxed.", tag: "Teeth Cleaning" },
+    { text: "Booking was quick and the clinic was easy to reach. My braces consultation was clear and unhurried.", tag: "Braces & Aligners" },
+    { text: "Our child was nervous, but the staff stayed patient and gentle from start to finish.", tag: "Children's Dentistry" }
+  ];
+
+  var FAQS = [
+    { q: "How often should I visit a dentist?", a: "Regular dental checkups every six months are commonly recommended, although your dentist may suggest a different schedule." },
+    { q: "Is teeth cleaning painful?", a: "Professional teeth cleaning is generally comfortable. Some people may experience temporary sensitivity." },
+    { q: "How long does a root canal treatment take?", a: "It depends on the condition of the tooth and the complexity of the treatment." },
+    { q: "Do you provide dental care for children?", a: "Yes, our clinic offers dental care options for children." },
+    { q: "How can I book an appointment?", a: "You can contact us through WhatsApp or use our online appointment booking form." }
+  ];
+
+  /* ------------------------------------------------------------------
+     Shared UI
+  ------------------------------------------------------------------ */
+  var BTN = {
+    primary: "inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-7 py-3.5 text-[15px] font-semibold text-white shadow-lift transition duration-200 hover:-translate-y-0.5 hover:bg-brand-dark sm:w-auto",
+    secondary: "inline-flex w-full items-center justify-center gap-2 rounded-full border border-line bg-white px-7 py-3.5 text-[15px] font-semibold text-ink transition duration-200 hover:-translate-y-0.5 hover:border-brand hover:text-brand sm:w-auto",
+    whatsapp: "inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0E7C3A] px-7 py-3.5 text-[15px] font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#0B652F] sm:w-auto",
+    light: "inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-[15px] font-semibold text-brand-dark transition duration-200 hover:-translate-y-0.5 hover:bg-mist sm:w-auto"
+  };
+
+  function Reveal(props) {
+    var ref = useRef(null);
+    useEffect(function () {
+      var el = ref.current;
+      if (!el || !("IntersectionObserver" in window) || reduceMotion()) return;
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add("rv-pre");
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { el.classList.remove("rv-pre"); io.disconnect(); }
+      }, { rootMargin: "0px 0px -8% 0px" });
+      io.observe(el);
+      return function () { io.disconnect(); };
+    }, []);
+    return html`<div ref=${ref} className=${"rv " + (props.className || "")} style=${{ transitionDelay: (props.delay || 0) + "ms" }}>${props.children}</div>`;
+  }
+
+  function SectionHead(props) {
+    var center = props.center !== false;
+    return html`<div className=${(center ? "mx-auto text-center " : "") + "max-w-2xl"}>
+      <p className=${"text-xs font-semibold uppercase tracking-[.16em] " + (props.light ? "text-[#8EE6DF]" : "text-brand")}>${props.eyebrow}</p>
+      <h2 id=${props.id} className=${"mt-3 font-heading text-3xl font-semibold leading-tight text-balance sm:text-4xl " + (props.light ? "text-white" : "text-ink")}>${props.title}</h2>
+      ${props.desc && html`<p className=${"mt-4 text-base sm:text-lg " + (props.light ? "text-white" : "text-ink-soft")}>${props.desc}</p>`}
+    </div>`;
+  }
+
+  function ImageSlot(props) {
+    if (props.src) return html`<img src=${props.src} alt=${props.alt} loading="lazy" className="h-full w-full object-cover" />`;
+    return props.children;
+  }
+
+  function Logo(props) {
+    return html`<a href="#home" onClick=${function (e) { e.preventDefault(); goTo("home"); }} className="flex items-center gap-2.5" aria-label="SmileCare Dental Clinic, back to top of page">
+      <span className=${"grid h-10 w-10 place-items-center rounded-xl " + (props.light ? "bg-white text-brand" : "bg-brand text-white")}>
+        <${Icon} name="tooth" size=${24} fill="currentColor" sw=${1} />
+      </span>
+      <span className="leading-none">
+        <span className=${"block font-heading text-xl font-semibold " + (props.light ? "text-white" : "text-ink")}>SmileCare</span>
+        <span className=${"mt-1 block text-[10px] font-medium uppercase tracking-[.2em] " + (props.light ? "text-white" : "text-ink-soft")}>Dental Clinic</span>
+      </span>
+    </a>`;
+  }
+
+  /* ------------------------------------------------------------------
+     Illustrations (replace via CONFIG.images when real photos are ready)
+  ------------------------------------------------------------------ */
+  var Spark = function (props) {
+    return html`<path transform=${"translate(" + props.x + " " + props.y + ") scale(" + props.s + ")"} fill=${props.fill}
+      d="M0 -22 C2 -8 8 -2 22 0 C8 2 2 8 0 22 C-2 8 -8 2 -22 0 C-8 -2 -2 -8 0 -22Z" />`;
+  };
+
+  function HeroArt() {
+    return html`<svg viewBox="0 0 560 560" role="img" aria-label="Illustration of a bright, healthy tooth with sparkles" className="h-full w-full">
+      <defs>
+        <filter id="toothShadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="#1677C8" floodOpacity="0.28" />
+        </filter>
+      </defs>
+      <rect width="560" height="560" fill="#E3F0FA" />
+      <circle cx="280" cy="290" r="226" fill="none" stroke="#1677C8" strokeOpacity=".28" strokeWidth="2" strokeDasharray="4 10" />
+      <circle cx="280" cy="290" r="196" fill="#D3E7F8" />
+      <circle cx="280" cy="290" r="140" fill="#EAF4FC" />
+      <circle cx="470" cy="120" r="14" fill="#20B2AA" />
+      <circle cx="92" cy="432" r="9" fill="#1677C8" fillOpacity=".4" />
+      <circle cx="104" cy="150" r="6" fill="#20B2AA" fillOpacity=".7" />
+      <g filter="url(#toothShadow)">
+        <g transform="translate(76 86) scale(17)">
+          <path d=${TOOTH} fill="#FFFFFF" stroke="#BFDDF5" strokeWidth=".25" strokeLinejoin="round" />
+          <path d="M7.4 7.2C8.2 6.5 9.3 6.3 10.3 6.6" fill="none" stroke="#D3E7F8" strokeWidth=".55" strokeLinecap="round" />
+        </g>
+      </g>
+      <${Spark} x=${430} y=${230} s=${1.1} fill="#20B2AA" />
+      <${Spark} x=${150} y=${250} s=${0.8} fill="#1677C8" />
+      <${Spark} x=${400} y=${440} s=${0.6} fill="#1677C8" />
+    </svg>`;
+  }
+
+  function AboutArt() {
+    return html`<svg viewBox="0 0 560 440" role="img" aria-label="Illustration of a bright, modern dental treatment room with a dental chair, lamp and window" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
+      <rect width="560" height="440" fill="#E3F0FA" />
+      <rect y="338" width="560" height="102" fill="#CFE4F5" />
+      <rect x="56" y="58" width="176" height="152" rx="14" fill="#FFFFFF" />
+      <rect x="68" y="70" width="152" height="128" rx="8" fill="#BBDDF5" />
+      <path d="M144 70v128M68 134h152" stroke="#FFFFFF" strokeWidth="6" />
+      <ellipse cx="104" cy="98" rx="24" ry="9" fill="#FFFFFF" fillOpacity=".85" />
+      <rect x="390" y="58" width="116" height="136" rx="12" fill="#FFFFFF" />
+      <g transform="translate(414 82) scale(3.8)"><path d=${TOOTH} fill="#E3F0FA" stroke="#1677C8" strokeWidth=".6" strokeLinejoin="round" /></g>
+      <path d="M356 0v34L292 112" fill="none" stroke="#1677C8" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M244 140L340 140L420 330L170 330Z" fill="#FFFFFF" fillOpacity=".38" />
+      <ellipse cx="292" cy="124" rx="52" ry="16" fill="#FFFFFF" stroke="#1677C8" strokeWidth="5" />
+      <rect x="236" y="214" width="74" height="136" rx="34" fill="#1677C8" transform="rotate(-12 273 282)" />
+      <rect x="226" y="196" width="52" height="30" rx="15" fill="#0F5FA6" transform="rotate(-12 252 211)" />
+      <rect x="278" y="296" width="170" height="40" rx="20" fill="#1677C8" />
+      <rect x="418" y="306" width="62" height="22" rx="11" fill="#0F5FA6" transform="rotate(14 449 317)" />
+      <rect x="352" y="334" width="24" height="46" fill="#172B4D" />
+      <rect x="318" y="376" width="92" height="14" rx="7" fill="#172B4D" />
+      <path d="M62 366h50l-6 54H68z" fill="#FFFFFF" />
+      <ellipse cx="72" cy="340" rx="12" ry="30" fill="#20B2AA" transform="rotate(-24 72 340)" />
+      <ellipse cx="100" cy="332" rx="12" ry="34" fill="#20B2AA" fillOpacity=".8" transform="rotate(18 100 332)" />
+      <ellipse cx="86" cy="326" rx="11" ry="30" fill="#0E7F79" />
+    </svg>`;
+  }
+
+  function DentistArt() {
+    return html`<svg viewBox="0 0 420 520" role="img" aria-label="Placeholder illustration of a dentist in a white coat" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
+      <rect width="420" height="520" fill="#DCEBF8" />
+      <circle cx="210" cy="236" r="172" fill="#EAF4FC" />
+      <path d="M36 520c0-98 66-152 174-152s174 54 174 152z" fill="#FFFFFF" />
+      <path d="M150 374 210 474 270 374 250 366H170z" fill="#20B2AA" />
+      <path d="M150 372l60 102M270 372l-60 102" stroke="#CFE4F5" strokeWidth="4" fill="none" strokeLinecap="round" />
+      <rect x="188" y="286" width="44" height="86" rx="20" fill="#B97D5C" />
+      <ellipse cx="136" cy="226" rx="11" ry="19" fill="#C98F6B" />
+      <ellipse cx="284" cy="226" rx="11" ry="19" fill="#C98F6B" />
+      <ellipse cx="210" cy="216" rx="73" ry="88" fill="#C98F6B" />
+      <path d="M134 206c-8-64 30-94 78-94s86 32 74 94c-6-32-30-54-74-54s-70 22-78 54z" fill="#1E2A3C" />
+      <path d="M168 200c10-6 22-6 30 0M222 200c10-6 22-6 30 0" stroke="#1E2A3C" strokeWidth="5" strokeLinecap="round" fill="none" />
+      <circle cx="184" cy="224" r="6" fill="#1E2A3C" />
+      <circle cx="236" cy="224" r="6" fill="#1E2A3C" />
+      <path d="M210 230c-3 14-8 24-2 28 4 3 10 3 14 0" stroke="#A56E50" strokeWidth="4" strokeLinecap="round" fill="none" />
+      <path d="M178 266c18 17 46 17 64 0" stroke="#7A3F2B" strokeWidth="5" strokeLinecap="round" fill="none" />
+      <rect x="262" y="414" width="62" height="28" rx="7" fill="#EAF4FC" stroke="#CFE4F5" strokeWidth="2" />
+      <path d="M272 428h42" stroke="#1677C8" strokeWidth="4" strokeLinecap="round" />
+    </svg>`;
+  }
+
+  function MapArt() {
+    return html`<svg viewBox="0 0 600 420" role="img" aria-label="Map placeholder showing a location pin" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
+      <rect width="600" height="420" fill="#EAF2F9" />
+      <path d="M-20 300 C120 260 220 330 340 270 S520 200 640 240" fill="none" stroke="#FFFFFF" strokeWidth="26" />
+      <path d="M180 -20 C200 100 140 180 190 260 S260 380 240 440" fill="none" stroke="#FFFFFF" strokeWidth="22" />
+      <path d="M420 -20 C400 80 470 160 430 250 S440 380 470 440" fill="none" stroke="#FFFFFF" strokeWidth="18" />
+      <path d="M-20 110 L640 70" stroke="#FFFFFF" strokeWidth="14" />
+      <rect x="226" y="120" width="70" height="46" rx="8" fill="#D6E7F4" />
+      <rect x="470" y="300" width="84" height="60" rx="8" fill="#D6E7F4" />
+      <rect x="40" y="170" width="90" height="56" rx="8" fill="#D6E7F4" />
+      <rect x="56" y="330" width="70" height="50" rx="8" fill="#CFE9E6" />
+      <g transform="translate(300 176)">
+        <ellipse cx="0" cy="62" rx="22" ry="7" fill="#172B4D" fillOpacity=".18" />
+        <path d="M0 58C-34 18 -40 4 -40 -12a40 40 0 0 1 80 0C40 4 34 18 0 58Z" fill="#1677C8" />
+        <circle cx="0" cy="-12" r="15" fill="#FFFFFF" />
+        <g transform="translate(-9 -21) scale(.75)"><path d=${TOOTH} fill="#1677C8" /></g>
+      </g>
+    </svg>`;
+  }
+
+  /* ------------------------------------------------------------------
+     Navbar
+  ------------------------------------------------------------------ */
+  function Navbar(props) {
+    var openState = useState(false), open = openState[0], setOpen = openState[1];
+    var scrolledState = useState(false), scrolled = scrolledState[0], setScrolled = scrolledState[1];
+    useEffect(function () {
+      var on = function () { setScrolled(window.scrollY > 8); };
+      on();
+      window.addEventListener("scroll", on, { passive: true });
+      return function () { window.removeEventListener("scroll", on); };
+    }, []);
+    var go = function (id) {
+      return function (e) { e.preventDefault(); setOpen(false); goTo(id); };
+    };
+    return html`<header className=${"site border-b bg-white/95 backdrop-blur transition-shadow duration-200 " + (scrolled ? "border-line shadow-soft" : "border-transparent")}>
+      <div className="wrap flex h-[72px] items-center justify-between gap-3">
+        <${Logo} />
+        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+          ${NAV.map(function (n) {
+            return html`<a key=${n[0]} href=${"#" + n[0]} onClick=${go(n[0])}
+              className=${"rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors " + (props.active === n[0] ? "bg-brand-soft text-brand" : "text-ink-soft hover:text-brand")}>${n[1]}</a>`;
+          })}
+        </nav>
+        <div className="flex items-center gap-2.5">
+          <a href="#booking" onClick=${go("booking")} className="inline-flex items-center justify-center rounded-full bg-brand px-4 py-2.5 text-sm font-semibold text-white shadow-lift transition hover:bg-brand-dark sm:px-6">
+            <span className="sm:hidden">Book Now</span><span className="hidden sm:inline">Book Appointment</span>
+          </a>
+          <button type="button" className="burger lg:hidden" aria-expanded=${open} aria-controls="mobile-menu" aria-label=${open ? "Close menu" : "Open menu"} onClick=${function () { setOpen(!open); }}>
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" className="acc lg:hidden" data-open=${open ? "true" : "false"}>
+        <div>
+          <nav aria-label="Mobile" className="wrap flex flex-col gap-1 border-t border-line pb-5 pt-3">
+            ${NAV.map(function (n) {
+              return html`<a key=${n[0]} href=${"#" + n[0]} onClick=${go(n[0])} className=${"rounded-xl px-4 py-3 text-base font-medium " + (props.active === n[0] ? "bg-brand-soft text-brand" : "text-ink hover:bg-mist")}>${n[1]}</a>`;
+            })}
+            <a href="#booking" onClick=${go("booking")} className=${BTN.primary + " mt-3"}>Book Your Appointment</a>
+          </nav>
+        </div>
+      </div>
+    </header>`;
+  }
+
+  /* ------------------------------------------------------------------
+     Sections
+  ------------------------------------------------------------------ */
+  function Hero() {
+    return html`<section id="home" className="overflow-hidden bg-mist" aria-labelledby="hero-title">
+      <div className="wrap grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.05fr_.95fr] lg:gap-10 lg:py-24">
+        <div className="min-w-0">
+          <p className="rise inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[.16em] text-brand shadow-soft">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal"></span>YOUR SMILE, OUR PRIORITY
+          </p>
+          <h1 id="hero-title" className="rise mt-6 font-heading text-[2.15rem] font-semibold leading-[1.12] text-ink text-balance sm:text-5xl lg:text-[3.4rem]" style=${{ animationDelay: "80ms" }}>
+            Your <span className="text-brand">Perfect Smile</span> Starts With the Right Care.
+          </h1>
+          <p className="rise mt-5 max-w-xl text-base text-ink-soft sm:text-lg" style=${{ animationDelay: "160ms" }}>
+            Experience comfortable, modern and personalised dental care for you and your family. Our team is here to keep your smile healthy, bright and confident.
+          </p>
+          <div className="rise mt-8 flex flex-col gap-3 sm:flex-row" style=${{ animationDelay: "240ms" }}>
+            <a href="#booking" onClick=${function (e) { e.preventDefault(); goTo("booking"); }} className=${BTN.primary}>Book Your Appointment <${Icon} name="arrow" size=${18} /></a>
+            <a href="#services" onClick=${function (e) { e.preventDefault(); goTo("services"); }} className=${BTN.secondary}>Explore Our Services</a>
+          </div>
+          <ul className="rise mt-10 grid gap-3 sm:grid-cols-2" style=${{ animationDelay: "320ms" }}>
+            ${TRUST.map(function (t) {
+              return html`<li key=${t.text} className="flex items-center gap-3 text-[15px] font-medium text-ink">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white text-teal-dark shadow-soft"><${Icon} name=${t.icon} size=${18} /></span>
+                ${t.text}
+              </li>`;
+            })}
+          </ul>
+        </div>
+        <div className="rise relative mx-auto w-full max-w-[540px]" style=${{ animationDelay: "200ms" }}>
+          <div className="aspect-square overflow-hidden rounded-[2.5rem] shadow-soft">
+            <${ImageSlot} src=${CONFIG.images.hero} alt="Smiling patient at SmileCare Dental Clinic"><${HeroArt} /><//>
+          </div>
+          <div className="absolute bottom-8 left-3 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-soft sm:-left-6">
+            <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><${Icon} name="clock" size=${22} /></span>
+            <span className="leading-tight">
+              <span className="block text-xs font-medium text-ink-soft">Mon – Sat</span>
+              <span className="block text-sm font-semibold text-ink">9:00 AM – 8:00 PM</span>
+            </span>
+          </div>
+          <div className="absolute right-3 top-8 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-soft sm:-right-4">
+            <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#E4F6F4] text-teal-dark"><${Icon} name="heart" size=${22} /></span>
+            <span className="text-sm font-semibold leading-tight text-ink">Care for the<br />whole family</span>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function About() {
+    return html`<section id="about" className="bg-white py-20 sm:py-24 lg:py-28" aria-labelledby="about-title">
+      <div className="wrap grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+        <${Reveal}>
+          <div className="relative mx-auto w-full max-w-[560px]">
+            <div className="aspect-[4/3.2] overflow-hidden rounded-[2rem] shadow-soft">
+              <${ImageSlot} src=${CONFIG.images.about} alt="Modern, comfortable treatment room at SmileCare Dental Clinic"><${AboutArt} /><//>
+            </div>
+            <div className="absolute -bottom-5 right-4 flex items-center gap-3 rounded-2xl bg-white p-4 shadow-soft sm:-right-5">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand text-white"><${Icon} name="smile" size=${22} /></span>
+              <span className="leading-tight">
+                <span className="block text-sm font-semibold text-ink">Friendly environment</span>
+                <span className="block text-xs text-ink-soft">Every visit, made comfortable</span>
+              </span>
+            </div>
+          </div>
+        <//>
+        <${Reveal} delay=${120}>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-[.16em] text-brand">About SmileCare</p>
+            <h2 id="about-title" className="mt-3 font-heading text-3xl font-semibold leading-tight text-ink text-balance sm:text-4xl">Your Trusted Partner for a Healthy Smile.</h2>
+            <div className="mt-5 space-y-4 text-base text-ink-soft sm:text-lg">
+              <p>At SmileCare Dental Clinic, we believe everyone deserves a healthy and beautiful smile.</p>
+              <p>We provide quality dental care in a comfortable and friendly environment. From regular dental checkups to advanced dental treatments, our goal is to make every visit a positive experience.</p>
+              <p>Your dental health is our priority, and we are committed to helping you smile with confidence.</p>
+            </div>
+            <ul className="mt-6 grid gap-3 text-[15px] font-medium text-ink sm:grid-cols-2">
+              ${["Regular dental checkups", "Advanced dental treatments", "Comfortable, friendly care", "Confidence in every smile"].map(function (t) {
+                return html`<li key=${t} className="flex items-center gap-2.5"><span className="grid h-6 w-6 place-items-center rounded-full bg-[#E4F6F4] text-teal-dark"><${Icon} name="check" size=${14} sw=${2.5} /></span>${t}</li>`;
+              })}
+            </ul>
+            <a href="#dentist" onClick=${function (e) { e.preventDefault(); goTo("dentist"); }} className=${BTN.secondary + " mt-8"}>Learn More About Us <${Icon} name="arrow" size=${18} /></a>
+          </div>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function Services(props) {
+    return html`<section id="services" className="bg-mist py-20 sm:py-24 lg:py-28" aria-labelledby="services-title">
+      <div className="wrap">
+        <${Reveal}>
+          <${SectionHead} id="services-title" eyebrow="Our Services" title="Complete Dental Care Under One Roof." desc="From routine checkups to smile transformations, explore our range of dental treatments." />
+        <//>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          ${SERVICES.map(function (s, i) {
+            return html`<${Reveal} key=${s.name} className="h-full" delay=${(i % 4) * 70}>
+              <article className="group flex h-full flex-col rounded-3xl border border-line bg-white p-6 transition duration-300 hover:-translate-y-1.5 hover:border-brand/30 hover:shadow-lift">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-mist text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white"><${Icon} name=${s.icon} size=${24} /></span>
+                <h3 className="mt-5 font-heading text-lg font-semibold text-ink">${s.name}</h3>
+                <p className="mt-2 flex-1 text-[15px] text-ink-soft">${s.desc}</p>
+                <a href="#booking" onClick=${function (e) { e.preventDefault(); props.onPick(s.name); }} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-all group-hover:gap-2.5">
+                  Learn More <${Icon} name="arrow" size=${16} />
+                </a>
+              </article>
+            <//>`;
+          })}
+        </div>
+        <${Reveal} className="mt-10">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-white p-7 shadow-soft sm:p-9 lg:flex-row lg:items-center">
+            <div className="min-w-0">
+              <p className="font-heading text-xl font-semibold text-ink sm:text-2xl">Not sure which treatment you need?</p>
+              <p className="mt-1.5 text-ink-soft">Talk to Our Dental Team and get guidance on the right next step.</p>
+            </div>
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <a href=${waLink("Hello SmileCare Dental Clinic, I would like to talk to your dental team.")} target="_blank" rel="noopener noreferrer" className=${BTN.whatsapp}><${Icon} name="whatsapp" size=${18} /> Talk to Our Dental Team</a>
+              <a href="#booking" onClick=${function (e) { e.preventDefault(); goTo("booking"); }} className=${BTN.secondary}>Schedule Your Visit</a>
+            </div>
+          </div>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function WhyUs() {
+    return html`<section id="why" className="bg-brand-dark py-20 sm:py-24 lg:py-28" aria-labelledby="why-title">
+      <div className="wrap">
+        <${Reveal}>
+          <${SectionHead} light=${true} id="why-title" eyebrow="Why SmileCare" title="Why Patients Choose SmileCare." desc="We focus on making your dental experience comfortable, convenient and stress-free." />
+        <//>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          ${FEATURES.map(function (f, i) {
+            return html`<${Reveal} key=${f.title} className="h-full" delay=${i * 70}>
+              <div className="h-full rounded-3xl border border-white/20 bg-white/10 p-7 transition duration-300 hover:-translate-y-1 hover:bg-white/15">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white text-brand"><${Icon} name=${f.icon} size=${24} /></span>
+                <h3 className="mt-5 font-heading text-lg font-semibold text-white">${f.title}</h3>
+                <p className="mt-2 text-[15px] text-white">${f.text}</p>
+              </div>
+            <//>`;
+          })}
+        </div>
+        <${Reveal} className="mt-10 flex justify-center">
+          <a href="#booking" onClick=${function (e) { e.preventDefault(); goTo("booking"); }} className=${BTN.light}>Schedule Your Visit <${Icon} name="arrow" size=${18} /></a>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function Dentist() {
+    return html`<section id="dentist" className="bg-white py-20 sm:py-24 lg:py-28" aria-labelledby="dentist-title">
+      <div className="wrap grid items-center gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+        <${Reveal}>
+          <div className="relative mx-auto w-full max-w-[400px]">
+            <div className="aspect-[4/4.9] overflow-hidden rounded-[2rem] shadow-soft">
+              <${ImageSlot} src=${CONFIG.images.dentist} alt="Portrait of the SmileCare dentist (demo placeholder)"><${DentistArt} /><//>
+            </div>
+            <span className="absolute left-4 top-4 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-dark shadow-soft">Demo placeholder</span>
+          </div>
+        <//>
+        <${Reveal} delay=${120}>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-[.16em] text-brand">Our Dentist</p>
+            <h2 id="dentist-title" className="mt-3 font-heading text-3xl font-semibold leading-tight text-ink text-balance sm:text-4xl">Meet the Expert Behind Your Smile.</h2>
+            <div className="mt-7 rounded-3xl border border-line bg-mist p-6 sm:p-8">
+              <h3 className="font-heading text-2xl font-semibold text-ink">Dr. [Dentist Name]</h3>
+              <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div><dt className="text-xs font-semibold uppercase tracking-wider text-ink-soft">Qualification</dt><dd className="mt-1 font-medium text-ink">BDS, MDS</dd></div>
+                <div><dt className="text-xs font-semibold uppercase tracking-wider text-ink-soft">Specialisation</dt><dd className="mt-1 font-medium text-ink">General & Cosmetic Dentistry</dd></div>
+              </dl>
+              <div className="mt-5 space-y-3 text-ink-soft">
+                <p>Dr. [Dentist Name] is dedicated to providing quality dental care with a patient-first approach.</p>
+                <p>With a focus on comfort, precision and personalised treatment, every patient receives attention and care throughout their dental journey.</p>
+              </div>
+              <p className="mt-5 flex items-start gap-2.5 rounded-xl bg-white p-3.5 text-sm text-ink-soft">
+                <${Icon} name="info" size=${18} className="mt-0.5 shrink-0 text-brand" />
+                <span>Demo placeholder: the name, qualifications and portrait are samples. Replace them with the dentist's real details before publishing.</span>
+              </p>
+            </div>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a href="#booking" onClick=${function (e) { e.preventDefault(); goTo("booking"); }} className=${BTN.primary}>Book Your Appointment</a>
+              <a href=${waLink("Hello SmileCare Dental Clinic, I would like to talk to your dental team.")} target="_blank" rel="noopener noreferrer" className=${BTN.whatsapp}><${Icon} name="whatsapp" size=${18} /> Talk to Our Dental Team</a>
+            </div>
+          </div>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function Testimonials() {
+    return html`<section id="testimonials" className="bg-mist py-20 sm:py-24 lg:py-28" aria-labelledby="testimonials-title">
+      <div className="wrap">
+        <${Reveal}>
+          <${SectionHead} id="testimonials-title" eyebrow="Patient Feedback" title="What Our Patients Say About Us." desc="Your trust and satisfaction inspire us to deliver better dental care every day." />
+        <//>
+        <p className="mx-auto mt-6 flex max-w-xl items-start justify-center gap-2.5 text-center text-sm text-ink-soft">
+          <${Icon} name="info" size=${18} className="mt-0.5 shrink-0 text-brand" />
+          <span>These are sample testimonials for demonstration only. They are not real patient reviews.</span>
+        </p>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          ${TESTIMONIALS.map(function (t, i) {
+            return html`<${Reveal} key=${i} className="h-full" delay=${i * 80}>
+              <figure className="flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-soft">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex gap-0.5 text-[#F2A900]" role="img" aria-label="5 out of 5 stars (sample)">
+                    ${[0, 1, 2, 3, 4].map(function (n) { return html`<${Icon} key=${n} name="star" size=${18} fill="currentColor" sw=${1} />`; })}
+                  </div>
+                  <span className="rounded-full bg-brand-soft px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-brand-dark">Sample</span>
+                </div>
+                <blockquote className="mt-5 flex-1 text-[15px] leading-relaxed text-ink">${t.text}</blockquote>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-soft text-brand"><${Icon} name="user" size=${20} /></span>
+                  <span className="leading-tight">
+                    <span className="block text-sm font-semibold text-ink">Patient Name</span>
+                    <span className="block text-xs text-ink-soft">${t.tag}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            <//>`;
+          })}
+        </div>
+      </div>
+    </section>`;
+  }
+
+  /* ---------------- Booking form ---------------- */
+  var todayISO = function () {
+    var d = new Date(), z = function (n) { return String(n).padStart(2, "0"); };
+    return d.getFullYear() + "-" + z(d.getMonth() + 1) + "-" + z(d.getDate());
+  };
+  var normalizePhone = function (v) {
+    var d = v.replace(/[\s\-().]/g, "");
+    if (d.indexOf("+91") === 0) d = d.slice(3);
+    else if (d.indexOf("0091") === 0) d = d.slice(4);
+    else if (d.length === 12 && d.indexOf("91") === 0) d = d.slice(2);
+    else if (d.length === 11 && d.charAt(0) === "0") d = d.slice(1);
+    return d;
+  };
+  var validate = function (v) {
+    var e = {};
+    if (!/^[A-Za-z஀-௿\s.'-]{2,}$/.test(v.name.trim())) e.name = "Please enter your full name.";
+    if (!v.phone.trim()) e.phone = "Please enter your mobile number.";
+    else if (!/^[6-9]\d{9}$/.test(normalizePhone(v.phone))) e.phone = "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.";
+    if (!v.treatment) e.treatment = "Please select a treatment.";
+    if (!v.date) e.date = "Please choose your preferred date.";
+    else if (v.date < todayISO()) e.date = "Please choose today or a later date.";
+    return e;
+  };
+  var prettyDate = function (iso) {
+    if (!iso) return "";
+    var p = iso.split("-");
+    var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][parseInt(p[1], 10) - 1];
+    return parseInt(p[2], 10) + " " + m + " " + p[0];
+  };
+  var bookingMessage = function (v) {
+    var lines = ["Hello " + CONFIG.clinicName + ", I would like to book an appointment."];
+    if (v.name.trim()) lines.push("Name: " + v.name.trim());
+    if (v.phone.trim()) lines.push("Phone: " + v.phone.trim());
+    if (v.treatment) lines.push("Treatment: " + v.treatment);
+    if (v.date) lines.push("Preferred date: " + prettyDate(v.date));
+    if (v.message.trim()) lines.push("Message: " + v.message.trim());
+    return lines.join("\n");
+  };
+
+  var INPUT = "w-full rounded-xl border bg-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-ink-soft/60 focus:border-brand focus:ring-4 focus:ring-brand/15 ";
+
+  function Field(props) {
+    return html`<div className=${props.className || ""}>
+      <label htmlFor=${props.id} className="mb-1.5 block text-sm font-semibold text-ink">${props.label}${props.required && html`<span className="text-[#B42318]" aria-hidden="true"> *</span>`}</label>
+      ${props.children}
+      ${props.error && html`<p id=${props.id + "-err"} role="alert" className="mt-1.5 text-sm text-[#B42318]">${props.error}</p>`}
+    </div>`;
+  }
+
+  function Booking(props) {
+    var empty = { name: "", phone: "", treatment: "", date: "", message: "" };
+    var vs = useState(empty), v = vs[0], setV = vs[1];
+    var es = useState({}), err = es[0], setErr = es[1];
+    var ds = useState(false), done = ds[0], setDone = ds[1];
+
+    useEffect(function () {
+      if (props.preset && props.preset.name) {
+        setV(function (s) { return Object.assign({}, s, { treatment: props.preset.name }); });
+        setErr(function (s) { return Object.assign({}, s, { treatment: undefined }); });
+        setDone(false);
+      }
+    }, [props.preset]);
+
+    var set = function (k) {
+      return function (e) {
+        var val = e.target.value;
+        setV(function (s) { var n = Object.assign({}, s); n[k] = val; return n; });
+        if (err[k]) setErr(function (s) { var n = Object.assign({}, s); n[k] = undefined; return n; });
+      };
+    };
+    var blur = function (k) {
+      return function () {
+        var all = validate(v);
+        setErr(function (s) { var n = Object.assign({}, s); n[k] = all[k]; return n; });
+      };
+    };
+    var submit = function (e) {
+      e.preventDefault();
+      var all = validate(v);
+      setErr(all);
+      var first = Object.keys(all)[0];
+      if (first) { var el = document.getElementById("bk-" + first); if (el) el.focus(); return; }
+      setDone(true);
+    };
+    var reset = function () { setV(empty); setErr({}); setDone(false); };
+    var cls = function (k) { return INPUT + (err[k] ? "border-[#B42318]" : "border-line"); };
+    var aria = function (k) { return { "aria-invalid": err[k] ? "true" : "false", "aria-describedby": err[k] ? "bk-" + k + "-err" : undefined }; };
+
+    var points = ["Choose your treatment and a preferred date.", "Send your request here or directly on WhatsApp.", "Mon – Sat 9:00 AM – 8:00 PM, Sun 10:00 AM – 2:00 PM."];
+
+    return html`<section id="booking" className="bg-white py-20 sm:py-24 lg:py-28" aria-labelledby="booking-title">
+      <div className="wrap">
+        <div className="grid gap-10 rounded-[2rem] border border-line bg-mist p-6 sm:p-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-14 lg:p-14">
+          <${Reveal}>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[.16em] text-brand">Appointments</p>
+              <h2 id="booking-title" className="mt-3 font-heading text-3xl font-semibold leading-tight text-ink text-balance sm:text-4xl">Ready to Give Your Smile the Care It Deserves?</h2>
+              <p className="mt-5 text-base text-ink-soft sm:text-lg">Don't wait until a small dental problem becomes a bigger one. Schedule your dental appointment today.</p>
+              <ul className="mt-7 space-y-3.5">
+                ${points.map(function (p) {
+                  return html`<li key=${p} className="flex items-start gap-3 text-[15px] text-ink"><span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand text-white"><${Icon} name="check" size=${14} sw=${2.5} /></span>${p}</li>`;
+                })}
+              </ul>
+              <a href=${waLink("Hello SmileCare Dental Clinic, I would like to book an appointment.")} target="_blank" rel="noopener noreferrer" className=${BTN.whatsapp + " mt-8"}><${Icon} name="whatsapp" size=${18} /> Contact Us on WhatsApp</a>
+            </div>
+          <//>
+          <${Reveal} delay=${100}>
+            <div className="min-w-0 rounded-3xl bg-white p-6 shadow-soft sm:p-8">
+              ${done ? html`<div className="text-center" role="status">
+                  <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#E4F6F4] text-teal-dark"><${Icon} name="check" size=${32} sw=${2.25} /></span>
+                  <h3 className="mt-5 font-heading text-2xl font-semibold text-ink">Thank you, ${v.name.trim().split(" ")[0]}.</h3>
+                  <p className="mt-2 text-ink-soft">Your request is ready. This demo form does not send data anywhere, so tap the button below to share these details with the clinic on WhatsApp.</p>
+                  <dl className="mx-auto mt-6 grid max-w-sm gap-2 rounded-2xl bg-mist p-5 text-left text-sm">
+                    <div className="flex justify-between gap-4"><dt className="text-ink-soft">Treatment</dt><dd className="text-right font-medium text-ink">${v.treatment}</dd></div>
+                    <div className="flex justify-between gap-4"><dt className="text-ink-soft">Preferred date</dt><dd className="text-right font-medium text-ink">${prettyDate(v.date)}</dd></div>
+                    <div className="flex justify-between gap-4"><dt className="text-ink-soft">Phone</dt><dd className="text-right font-medium text-ink">${v.phone.trim()}</dd></div>
+                  </dl>
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                    <a href=${waLink(bookingMessage(v))} target="_blank" rel="noopener noreferrer" className=${BTN.whatsapp}><${Icon} name="whatsapp" size=${18} /> Send on WhatsApp</a>
+                    <button type="button" onClick=${reset} className=${BTN.secondary}>Book Another Visit</button>
+                  </div>
+                </div>`
+              : html`<form onSubmit=${submit} noValidate=${true} aria-label="Appointment booking form">
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <${Field} id="bk-name" label="Full Name" required=${true} error=${err.name}>
+                      <input id="bk-name" name="name" type="text" autoComplete="name" placeholder="Your full name" value=${v.name} onChange=${set("name")} onBlur=${blur("name")} className=${cls("name")} ...${aria("name")} />
+                    <//>
+                    <${Field} id="bk-phone" label="Phone Number" required=${true} error=${err.phone}>
+                      <input id="bk-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="98765 43210" value=${v.phone} onChange=${set("phone")} onBlur=${blur("phone")} className=${cls("phone")} ...${aria("phone")} />
+                    <//>
+                    <${Field} id="bk-treatment" label="Select Treatment" required=${true} error=${err.treatment}>
+                      <select id="bk-treatment" name="treatment" value=${v.treatment} onChange=${set("treatment")} onBlur=${blur("treatment")} className=${cls("treatment")} ...${aria("treatment")}>
+                        <option value="">Choose a treatment</option>
+                        ${SERVICES.map(function (s) { return html`<option key=${s.name} value=${s.name}>${s.name}</option>`; })}
+                        <option value="Dental Checkup">Dental Checkup</option>
+                        <option value="Not sure, need advice">Not sure, need advice</option>
+                      </select>
+                    <//>
+                    <${Field} id="bk-date" label="Preferred Appointment Date" required=${true} error=${err.date}>
+                      <input id="bk-date" name="date" type="date" min=${todayISO()} value=${v.date} onChange=${set("date")} onBlur=${blur("date")} className=${cls("date")} ...${aria("date")} />
+                    <//>
+                    <${Field} id="bk-message" label="Message" className="sm:col-span-2">
+                      <textarea id="bk-message" name="message" rows="4" placeholder="Tell us about your dental concern (optional)" value=${v.message} onChange=${set("message")} className=${INPUT + "border-line resize-y"}></textarea>
+                    <//>
+                  </div>
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                    <button type="submit" className=${BTN.primary + " sm:flex-1"}>Book My Appointment</button>
+                    <a href=${waLink(bookingMessage(v))} target="_blank" rel="noopener noreferrer" className=${BTN.whatsapp + " sm:flex-1"}><${Icon} name="whatsapp" size=${18} /> Book on WhatsApp</a>
+                  </div>
+                  <p className="mt-4 text-xs text-ink-soft">Fields marked * are required. Indian mobile numbers only (10 digits, with or without +91).</p>
+                </form>`}
+            </div>
+          <//>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function FAQItem(props) {
+    var open = props.open;
+    return html`<div className=${"rounded-2xl border bg-white transition-colors " + (open ? "border-brand/40 shadow-soft" : "border-line")}>
+      <h3>
+        <button type="button" id=${"faq-q-" + props.i} aria-expanded=${open} aria-controls=${"faq-a-" + props.i} onClick=${props.onToggle}
+          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6 sm:py-5">
+          <span className="font-heading text-base font-medium text-ink sm:text-lg">${props.q}</span>
+          <span className=${"grid h-8 w-8 shrink-0 place-items-center rounded-full transition duration-300 " + (open ? "rotate-180 bg-brand text-white" : "bg-mist text-brand")}><${Icon} name="chevron" size=${18} /></span>
+        </button>
+      </h3>
+      <div id=${"faq-a-" + props.i} role="region" aria-labelledby=${"faq-q-" + props.i} className="acc" data-open=${open ? "true" : "false"}>
+        <div><p className="px-5 pb-5 text-ink-soft sm:px-6">${props.a}</p></div>
+      </div>
+    </div>`;
+  }
+
+  function FAQ() {
+    var s = useState(0), openIdx = s[0], setOpen = s[1];
+    return html`<section id="faq" className="bg-white pb-20 sm:pb-24 lg:pb-28" aria-labelledby="faq-title">
+      <div className="wrap">
+        <${Reveal}>
+          <${SectionHead} id="faq-title" eyebrow="FAQ" title="Frequently Asked Questions." />
+        <//>
+        <div className="mx-auto mt-10 grid max-w-3xl gap-3">
+          ${FAQS.map(function (f, i) {
+            return html`<${FAQItem} key=${i} i=${i} q=${f.q} a=${f.a} open=${openIdx === i} onToggle=${function () { setOpen(openIdx === i ? -1 : i); }} />`;
+          })}
+        </div>
+        <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center justify-between gap-4 rounded-2xl bg-mist p-6 sm:flex-row">
+          <p className="text-center font-medium text-ink sm:text-left">Still have a question? Our team is happy to help.</p>
+          <a href=${waLink("Hello SmileCare Dental Clinic, I need some dental assistance.")} target="_blank" rel="noopener noreferrer" className=${BTN.primary}>Get Dental Assistance</a>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function InfoRow(props) {
+    return html`<li className="flex items-start gap-4">
+      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white text-brand shadow-soft"><${Icon} name=${props.icon} size=${20} /></span>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">${props.label}</p>
+        <div className="mt-0.5 break-words font-medium text-ink">${props.children}</div>
+      </div>
+    </li>`;
+  }
+
+  function Contact() {
+    return html`<section id="contact" className="bg-mist py-20 sm:py-24 lg:py-28" aria-labelledby="contact-title">
+      <div className="wrap grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <${Reveal}>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-[.16em] text-brand">Contact</p>
+            <h2 id="contact-title" className="mt-3 font-heading text-3xl font-semibold leading-tight text-ink text-balance sm:text-4xl">Let's Make Your Smile Brighter!</h2>
+            <p className="mt-5 text-base text-ink-soft sm:text-lg">Have questions or need dental assistance? Contact our team today. We're happy to help.</p>
+            <ul className="mt-8 space-y-5">
+              <${InfoRow} icon="phone" label="Phone"><a href=${"tel:" + CONFIG.phoneNumber} className="hover:text-brand">${CONFIG.phoneDisplay}</a><//>
+              <${InfoRow} icon="whatsapp" label="WhatsApp"><a href=${waLink("")} target="_blank" rel="noopener noreferrer" className="hover:text-brand">${CONFIG.whatsappDisplay}</a><//>
+              <${InfoRow} icon="mail" label="Email"><a href=${"mailto:" + CONFIG.email} className="hover:text-brand">${CONFIG.email}</a><//>
+              <${InfoRow} icon="pin" label="Address">${CONFIG.address}<//>
+              <${InfoRow} icon="clock" label="Opening Hours">
+                ${CONFIG.hours.map(function (hr) { return html`<span key=${hr[0]} className="block">${hr[0]}: ${hr[1]}</span>`; })}
+              <//>
+            </ul>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href=${"tel:" + CONFIG.phoneNumber} className=${BTN.primary}><${Icon} name="phone" size=${18} /> Call Now</a>
+              <a href=${waLink("Hello SmileCare Dental Clinic, I need some dental assistance.")} target="_blank" rel="noopener noreferrer" className=${BTN.whatsapp}><${Icon} name="whatsapp" size=${18} /> WhatsApp Us</a>
+              <a href=${mapsLink} target="_blank" rel="noopener noreferrer" className=${BTN.secondary}><${Icon} name="navigation" size=${18} /> Get Directions</a>
+            </div>
+          </div>
+        <//>
+        <${Reveal} delay=${100}>
+          <div className="relative h-[340px] overflow-hidden rounded-[2rem] border border-line shadow-soft sm:h-[440px] lg:h-full lg:min-h-[420px]">
+            <${MapArt} />
+            <div className="absolute inset-x-4 bottom-4 flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-soft sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-ink">Google Maps placeholder</p>
+                <p className="text-xs text-ink-soft">Embed your clinic's Google Map here when you publish.</p>
+              </div>
+              <a href=${mapsLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark">Open Maps <${Icon} name="arrow" size=${16} /></a>
+            </div>
+          </div>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function Footer(props) {
+    var quick = [["home", "Home"], ["about", "About Us"], ["services", "Services"], ["dentist", "Our Dentist"], ["contact", "Contact Us"]];
+    var svc = ["Teeth Cleaning", "Teeth Whitening", "Dental Implants", "Root Canal Treatment", "Braces & Aligners"];
+    var footLabel = { "Root Canal Treatment": "Root Canal" };
+    var socials = [["facebook", CONFIG.social.facebook, "Facebook"], ["instagram", CONFIG.social.instagram, "Instagram"], ["youtube", CONFIG.social.youtube, "YouTube"]];
+    var linkCls = "text-sm text-white/90 transition hover:text-white hover:underline";
+    return html`<footer className="bg-ink pt-16 text-white" style=${{ paddingBottom: "calc(2rem + env(safe-area-inset-bottom, 0px))" }}>
+      <div className="wrap">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div className="min-w-0">
+            <${Logo} light=${true} />
+            <p className="mt-5 max-w-xs text-sm text-white/90">Creating healthy smiles with quality dental care.</p>
+            <div className="mt-6 flex gap-3">
+              ${socials.map(function (s) {
+                return html`<a key=${s[0]} href=${s[1]} target="_blank" rel="noopener noreferrer" aria-label=${"SmileCare on " + s[2]} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 transition hover:bg-white hover:text-ink"><${Icon} name=${s[0]} size=${18} /></a>`;
+              })}
+            </div>
+          </div>
+          <nav aria-label="Quick links">
+            <h3 className="font-heading text-base font-semibold">Quick Links</h3>
+            <ul className="mt-4 space-y-2.5">
+              ${quick.map(function (q) {
+                return html`<li key=${q[0]}><a href=${"#" + q[0]} onClick=${function (e) { e.preventDefault(); goTo(q[0]); }} className=${linkCls}>${q[1]}</a></li>`;
+              })}
+            </ul>
+          </nav>
+          <nav aria-label="Services">
+            <h3 className="font-heading text-base font-semibold">Services</h3>
+            <ul className="mt-4 space-y-2.5">
+              ${svc.map(function (n) {
+                return html`<li key=${n}><a href="#booking" onClick=${function (e) { e.preventDefault(); props.onPick(n); }} className=${linkCls}>${footLabel[n] || n}</a></li>`;
+              })}
+            </ul>
+          </nav>
+          <div>
+            <h3 className="font-heading text-base font-semibold">Visit Us</h3>
+            <ul className="mt-4 space-y-2.5 text-sm text-white/90">
+              <li>${CONFIG.address}</li>
+              <li>${CONFIG.phoneDisplay}</li>
+              <li className="break-words">${CONFIG.email}</li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/20 pt-6 text-sm text-white/90 sm:flex-row sm:items-center sm:justify-between">
+          <p>© ${new Date().getFullYear()} SmileCare Dental Clinic. All rights reserved.</p>
+          <p>Demo website: names, reviews and contact details are placeholders.</p>
+        </div>
+      </div>
+    </footer>`;
+  }
+
+  function FloatingActions() {
+    var s = useState(false), show = s[0], setShow = s[1];
+    useEffect(function () {
+      var on = function () { setShow(window.scrollY > 600); };
+      on();
+      window.addEventListener("scroll", on, { passive: true });
+      return function () { window.removeEventListener("scroll", on); };
+    }, []);
+    return html`<div className="fab-wrap">
+      <button type="button" aria-label="Back to top" tabIndex=${show ? 0 : -1} aria-hidden=${show ? "false" : "true"} data-show=${show ? "true" : "false"}
+        onClick=${function () { window.scrollTo({ top: 0, behavior: reduceMotion() ? "auto" : "smooth" }); }}
+        className="fab-top grid h-12 w-12 place-items-center rounded-full border border-line bg-white text-brand shadow-soft transition hover:bg-brand hover:text-white">
+        <${Icon} name="up" size=${22} />
+      </button>
+      <a href=${waLink("Hello SmileCare Dental Clinic, I would like to make an enquiry.")} target="_blank" rel="noopener noreferrer" aria-label="Chat with SmileCare on WhatsApp"
+        className="grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-lift transition hover:scale-105">
+        <${Icon} name="whatsapp" size=${28} sw=${1.75} />
+      </a>
+    </div>`;
+  }
+
+  /* ------------------------------------------------------------------
+     App
+  ------------------------------------------------------------------ */
+  function App() {
+    var as = useState("home"), active = as[0], setActive = as[1];
+    var ps = useState(null), preset = ps[0], setPreset = ps[1];
+
+    useEffect(function () {
+      if (!("IntersectionObserver" in window)) return;
+      var ids = ["home", "about", "services", "why", "dentist", "testimonials", "booking", "faq", "contact"];
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) setActive(en.target.id); });
+      }, { rootMargin: "-40% 0px -55% 0px" });
+      ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+      return function () { io.disconnect(); };
+    }, []);
+
+    var pick = function (name) { setPreset({ name: name, n: Date.now() }); goTo("booking"); };
+
+    return html`<div>
+      <${Navbar} active=${active} />
+      <main>
+        <${Hero} />
+        <${About} />
+        <${Services} onPick=${pick} />
+        <${WhyUs} />
+        <${Dentist} />
+        <${Testimonials} />
+        <${Booking} preset=${preset} />
+        <${FAQ} />
+        <${Contact} />
+      </main>
+      <${Footer} onPick=${pick} />
+      <${FloatingActions} />
+    </div>`;
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(h(App));
+})();
+</script>
+
+</body></html>
